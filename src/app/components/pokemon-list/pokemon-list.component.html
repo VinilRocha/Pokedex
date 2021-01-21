@@ -1,0 +1,38 @@
+<div class="container">
+  <header>
+    <h1 class="title">Pokedex</h1>
+    <mat-form-field class="search" floatLabel="always">
+      <mat-label>Insira o nome do Pokemon</mat-label>
+      <input matInput [formControl]="search" (keydown.enter)="onSearchPokemon()" placeholder="pikachu">
+    </mat-form-field>
+  </header>
+
+  <div class="loading" *ngIf="isLoading">
+    <span>Carregando...</span>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
+
+  <div *ngIf="!isSearching" class="pokemon__list" (scroll)="onScroll($event)">
+    <div class="card {{'bg-color-'+ getPrincipalType(pokemon.types)}}" *ngFor="let pokemon of pokemons">
+      <div class="card__info">
+        <h2 class="color-white">{{pokemon.name}}</h2>
+        <span *ngFor="let type of pokemon.types">{{type.type.name}}</span>
+      </div>
+      <div class="card__img">
+        <img *ngIf="classicMode" [src]="pokemon.sprites?.front_default" [alt]="pokemon.name">
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isSearching" class="pokemon__list" (scroll)="onScroll($event)">
+    <div class="card {{'bg-color-'+getPrincipalType(searchPokemon.types)}}">
+      <div class="card__info">
+        <h2 class="color-white">{{searchPokemon.name}}</h2>
+        <span *ngFor="let type of searchPokemon.types">{{type.type.name}}</span>
+      </div>
+      <div class="card__img">
+        <img [src]="searchPokemon.sprites?.front_default" [alt]="searchPokemon.name">
+      </div>
+    </div>
+  </div>
+</div>

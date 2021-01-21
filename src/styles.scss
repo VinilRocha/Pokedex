@@ -1,1 +1,91 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f3f3f3;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+body, input, button {
+  font: 16px Roboto, sans-serif;
+}
+
+#root {
+  max-width: 1220px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* COLORS */
+$grass: #78c850;
+$fire: #f08030;
+$water: #6890f0;
+$normal: #a8a878;
+$flying:#a890f0;
+$bug: #a8b820;
+$poison: #a040a0;
+$electric: #f8d030;
+$ground: #e0c068;
+$fighting:#c03028;
+$psychic: #f85888;
+$rock: #b8a038;
+$ice: #98d8d8;
+$ghost: #705898;
+$dragon:#7038f8;
+$dark: #705848;
+$steel: #b8b8d0;
+$fairy: #f0b6bc;
+
+$gray-light: #d8d8d8;
+$gray-dark: #606060;
+$gray: #b6b6b6;
+
+$transparent: transparent;
+$black: #000000;
+$white: #ffffff;
+
+$general:
+('black', $black),
+('white', $white),
+('grass', $grass),
+('fire', $fire),
+('water', $water),
+('normal', $normal),
+('flying', $flying),
+('bug', $bug),
+('poison', $poison),
+('electric', $electric),
+('ground', $ground),
+('fighting', $fighting),
+('psychic', $psychic),
+('rock', $rock),
+('ice' , $ice),
+('ghost', $ghost),
+('dragon',$dragon),
+('dark',$dark),
+('steel',$steel),
+('fairy',$fairy),
+('gray', $gray);
+
+@each $color in $general {
+  $name: nth($color, 1);
+  $value: nth($color,2);
+  .bg-color-#{$name} {
+    background-color: $value !important;
+  }
+  .color-#{$name}{
+      color: $value !important;
+  }
+}
+
+
